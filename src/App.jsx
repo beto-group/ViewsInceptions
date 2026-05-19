@@ -171,6 +171,28 @@ function SimpleComponentLoader({ folderPath, dc }) {
         stateRefs.placeholder.style.display = "none";
         container.parentNode.insertBefore(stateRefs.placeholder, container);
         
+        // Inject status bar suppression stylesheet
+        const styleId = "impeccable-status-views-inceptions";
+        let styleEl = document.getElementById(styleId);
+        if (!styleEl) {
+            styleEl = document.createElement('style');
+            styleEl.id = styleId;
+            styleEl.innerHTML = `
+                /* Hide global status bar and view footers */
+                .status-bar, .view-footer, .workspace-leaf-content-footer { 
+                    display: none !important; 
+                }
+                
+                /* Expand workspace-leaf-content to edge-to-edge container */
+                .workspace-leaf-content { 
+                    padding: 0 !important; 
+                    margin: 0 !important; 
+                    border-radius: 0 !important; 
+                }
+            `;
+            document.head.appendChild(styleEl);
+        }
+
         stateRefs.parentPositionInfo = {
             element: contentWrapper,
             original: window.getComputedStyle(contentWrapper).position,
@@ -195,6 +217,8 @@ function SimpleComponentLoader({ folderPath, dc }) {
             if (stateRefs.placeholder?.parentNode) {
                 stateRefs.placeholder.parentNode.replaceChild(container, stateRefs.placeholder);
             }
+            const el = document.getElementById(styleId);
+            if (el) el.remove();
             if (stateRefs.parentPositionInfo?.element) {
                 stateRefs.parentPositionInfo.element.style.position =
                     stateRefs.parentPositionInfo.original === "static" ? "" : stateRefs.parentPositionInfo.original;
