@@ -71,7 +71,7 @@ class ErrorBoundary extends PreactComponent {
     componentDidCatch(error, info) {
         console.error("ErrorBoundary caught an error:", error, info);
     }
-    
+
     componentDidUpdate(prevProps) {
         if (prevProps.renderKey !== this.props.renderKey) {
             this.setState({ hasError: false, error: null });
@@ -98,10 +98,10 @@ function DynamicComponentLoader(props) {
     // DOM Mutation Observer to track and PREVENT full-tab escapes
     useEffect(() => {
         if (!LoadedComponent) return;
-        
+
         const sandboxBoundary = document.querySelector('.component-sandbox-isolator');
         if (!sandboxBoundary) return;
-        
+
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList') {
@@ -122,36 +122,36 @@ function DynamicComponentLoader(props) {
                 }
             });
         });
-        
+
         observer.observe(sandboxBoundary, {
             childList: true,
             subtree: true,
             attributes: true,
             attributeFilter: ['style']
         });
-        
+
         observer.observe(document.body, {
             childList: true,
             subtree: true,
             attributes: true,
             attributeFilter: ['style']
         });
-        
+
         return () => observer.disconnect();
     }, [LoadedComponent]);
 
     useEffect(() => {
         let isCancelled = false;
-        
+
         const loadComponent = async () => {
             if (!componentName) {
-                setLoadedComponent(null); 
+                setLoadedComponent(null);
                 setLoadError(null);
                 setIsLoading(false);
                 return;
             }
-            
-            setLoadedComponent(null); 
+
+            setLoadedComponent(null);
             setLoadError(null);
             setIsLoading(true);
 
@@ -167,27 +167,41 @@ function DynamicComponentLoader(props) {
                     const isType = name.includes('.component') || name.includes('.viewer');
                     return isMatch && isType && file.name.endsWith('.md');
                 });
-                
+
                 if (matchingFiles.length === 0) {
-                     const looseMatches = allFiles.filter(file => 
-                        file.name.toLowerCase().includes(componentName.toLowerCase()) && 
+                    const looseMatches = allFiles.filter(file =>
+                        file.name.toLowerCase().includes(componentName.toLowerCase()) &&
                         file.name.endsWith('.md')
-                     );
-                     if (looseMatches.length > 0) {
-                          matchingFiles.push(...looseMatches);
-                     }
+                    );
+                    if (looseMatches.length > 0) {
+                        matchingFiles.push(...looseMatches);
+                    }
                 }
-                
+
                 if (matchingFiles.length === 0) {
                     throw new Error(`No component found matching "${componentName}" in vault`);
                 }
-                
+
                 matchingFiles.sort((a, b) => {
-                    const aScore = (a.name.includes('.viewer') ? 2 : 0) + (a.name.includes('.component') ? 1 : 0);
-                    const bScore = (b.name.includes('.viewer') ? 2 : 0) + (b.name.includes('.component') ? 1 : 0);
-                    return bScore - aScore;
+                    let scoreA = (a.name.includes('.viewer') ? 2 : 0) + (a.name.includes('.component') ? 1 : 0);
+                    let scoreB = (b.name.includes('.viewer') ? 2 : 0) + (b.name.includes('.component') ? 1 : 0);
+                    
+                    const folderPath = props.folderPath;
+                    if (folderPath) {
+                        const targetExample = folderPath + "/example";
+                        if (a.path.includes(targetExample)) scoreA += 1000;
+                        if (b.path.includes(targetExample)) scoreB += 1000;
+                        
+                        if (a.path.includes(folderPath)) scoreA += 500;
+                        if (b.path.includes(folderPath)) scoreB += 500;
+                    }
+                    
+                    if (a.path.includes('VIEWS INCEPTIONS/example')) scoreA += 200;
+                    if (b.path.includes('VIEWS INCEPTIONS/example')) scoreB += 200;
+                    
+                    return scoreB - scoreA;
                 });
-                
+
                 const file = matchingFiles[0];
                 const filePath = file.path;
                 const calculatedFolderPath = filePath.substring(0, filePath.lastIndexOf('/'));
@@ -201,7 +215,7 @@ function DynamicComponentLoader(props) {
                 originalGetActiveFile = app.workspace.getActiveFile;
                 const stubbedGetActiveFile = () => mockFile;
                 app.workspace.getActiveFile = stubbedGetActiveFile;
-                
+
                 if (typeof dc !== 'undefined' && dc.app && dc.app !== app) {
                     dc.app.workspace.getActiveFile = stubbedGetActiveFile;
                 }
@@ -217,8 +231,8 @@ function DynamicComponentLoader(props) {
                                 return await originalRequire.call(dc, fixedPath);
                             }
                             if (!requirePath.endsWith('.jsx') && !requirePath.endsWith('.js') && !requirePath.endsWith('.ts') && !requirePath.endsWith('.tsx') && !requirePath.endsWith('.md')) {
-                                 const fixedPath = requirePath + '.md';
-                                 return await originalRequire.call(dc, fixedPath);
+                                const fixedPath = requirePath + '.md';
+                                return await originalRequire.call(dc, fixedPath);
                             }
                         }
                         throw err;
@@ -228,7 +242,7 @@ function DynamicComponentLoader(props) {
                 const fileContent = await app.vault.read(file);
                 const resolvedPath = dc.resolvePath(filePath);
                 const headerMatch = fileContent.match(/^#+\s+([^\r\n]+)/m);
-                
+
                 let dynamicModule = null;
                 let loadedViaManual = false;
 
@@ -260,7 +274,7 @@ function DynamicComponentLoader(props) {
                         }
 
                         try {
-                            const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+                            const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
                             const manualFn = new AsyncFunction('dc', 'app', code);
                             dynamicModule = await manualFn(dc, app);
                             loadedViaManual = true;
@@ -271,7 +285,7 @@ function DynamicComponentLoader(props) {
                         throw new Error("No header and no valid code block found in file.");
                     }
                 }
-                
+
                 if (isCancelled) return;
 
                 let FactoryOrComp = null;
@@ -297,16 +311,16 @@ function DynamicComponentLoader(props) {
                 }
 
                 if (typeof FactoryOrComp === 'function' && !loadedViaManual && (FactoryOrComp.length > 0 || FactoryOrComp.constructor.name === 'AsyncFunction')) {
-                     try {
-                          const result = await FactoryOrComp({ folderPath: calculatedFolderPath });
-                          if (typeof result === 'function') {
-                              FinalComp = result;
-                          } else if (result && typeof result === 'object') {
-                              FinalComp = () => result;
-                          }
-                     } catch (err) {
-                          console.error("[DynamicLoader] Failed to execute component factory:", err);
-                     }
+                    try {
+                        const result = await FactoryOrComp({ folderPath: calculatedFolderPath });
+                        if (typeof result === 'function') {
+                            FinalComp = result;
+                        } else if (result && typeof result === 'object') {
+                            FinalComp = () => result;
+                        }
+                    } catch (err) {
+                        console.error("[DynamicLoader] Failed to execute component factory:", err);
+                    }
                 }
 
                 if (!isCancelled) {
@@ -344,24 +358,24 @@ function DynamicComponentLoader(props) {
             </div>
         );
     }
-    
+
     if (loadError) {
         return <ErrorDisplay errorMessage={loadError} />;
     }
-    
+
     if (LoadedComponent) {
         return (
             <div ref={sandboxRef} className="component-render-root">
                 <ErrorBoundary renderKey={renderKey}>
-                    <LoadedComponent 
-                        key={`component-${renderKey}`} 
-                        {...componentProps} 
+                    <LoadedComponent
+                        key={`component-${renderKey}`}
+                        {...componentProps}
                     />
                 </ErrorBoundary>
             </div>
         );
     }
-    
+
     return (
         <div style={{ padding: '20px', textAlign: 'center', color: '#888' }}>
             <div style={{ fontSize: '32px', marginBottom: '12px' }}>📦</div>

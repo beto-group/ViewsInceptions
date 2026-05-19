@@ -867,6 +867,7 @@ function SimpleComponentLoader({ folderPath, dc }) {
                                             componentName={loadedComponentName} 
                                             componentProps={componentProps}
                                             renderKey={renderKey} 
+                                            folderPath={folderPath}
                                         />
                                     )}
                                 </div>
