@@ -30,7 +30,7 @@ version: 2.0.6
 # Views Inceptions
 
 ```datacorejsx
-const activeFile = dc.resolvePath("VIEWS INCEPTIONS") || "_RESOURCES/DATACORE/VIEWS INCEPTIONS/VIEWS INCEPTIONS";
+const activeFile = dc.resolvePath("VIEWS INCEPTIONS.md") || "_RESOURCES/DATACORE/VIEWS INCEPTIONS/VIEWS INCEPTIONS.md";
 const folderPath = activeFile.substring(0, activeFile.lastIndexOf('/'));
 const { View } = await dc.require(folderPath + "/src/index.jsx");
 return await View({ folderPath, dc });

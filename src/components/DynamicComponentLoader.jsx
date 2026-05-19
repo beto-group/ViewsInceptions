@@ -227,7 +227,7 @@ function DynamicComponentLoader(props) {
 
                 const fileContent = await app.vault.read(file);
                 const resolvedPath = dc.resolvePath(filePath);
-                const headerMatch = fileContent.match(/^#+\s+([^\n]+)/m);
+                const headerMatch = fileContent.match(/^#+\s+([^\r\n]+)/m);
                 
                 let dynamicModule = null;
                 let loadedViaManual = false;
@@ -250,7 +250,7 @@ function DynamicComponentLoader(props) {
                         }
                     }
                 } catch (requireErr) {
-                    const codeBlockMatch = fileContent.match(/```(?:datacorejsx|jsx|js|ts|tsx)\n([\s\S]*?)\n```/);
+                    const codeBlockMatch = fileContent.match(/```(?:datacorejsx|jsx|js|ts|tsx)\r?\n([\s\S]*?)\r?\n```/);
                     if (codeBlockMatch) {
                         let code = codeBlockMatch[1];
                         if (code.includes('<')) {

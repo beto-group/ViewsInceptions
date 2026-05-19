@@ -114,7 +114,7 @@ function SimpleComponentLoader({ folderPath, dc }) {
     useEffect(() => {
         const allFiles = app.vault.getMarkdownFiles();
         const componentFiles = allFiles.filter(file => 
-            file.path.includes('_resources/datacore') &&
+            file.path.includes('VIEWS INCEPTIONS/example') &&
             file.path.endsWith('.component.md')
         );
         
