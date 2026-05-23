@@ -10,7 +10,7 @@
   <!-- TOP PURPLE LINKS -->
   <a href="https://beto.group"><img src="https://img.shields.io/badge/WEBSITE-7A46F1?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtZXh0ZXJuYWwtbGluayI+PHBhdGggZD0iTTE4IDEzdjZhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJWOGEyIDIgMCAwIDEgMi0yaDYiLz48cG9seWxpbmUgcG9pbnRzPSIxNSAzIDIxIDMgMjEgOSIvPjxsaW5lIHgxPSIxMCIgeDI9IjIxIiB5MT0iMTQiIHkyPSIzIi8+PC9zdmc+" alt="WEBSITE"></a>
   <a href="https://discord.com/invite/6rDp4q4Y2B"><img src="https://img.shields.io/badge/DISCORD-7A46F1?style=for-the-badge&logo=discord&logoColor=white" alt="JOIN OUR DISCORD"></a>
-  <a href="https://ko-fi.com/betogroup"><img src="https://img.shields.io/badge/Support-7A46F1?style=for-the-badge&logo=ko-fi&logoColor=white" alt="SUPPORT US ON KO-FI"></a>
+  <a href="https://github.com/sponsors/beto-group"><img src="https://img.shields.io/badge/Sponsor-7A46F1?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="SUPPORT US ON GITHUB"></a>
   <br/>
   <!-- BOTTOM GOLD TAXONOMY -->
   <img src="https://img.shields.io/badge/TARGET-DATACORE-000?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkUxNjUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1IiByeD0iOSIgcnk9IjMiLz48cGF0aCBkPSJNIDMgNXYxNGE5IDMgMCAwIDAgMTggMHYtMTQiLz48cGF0aCBkPSJNIDMgMTJhOSAzIDAgMCAwIDE4IDAiLz48L3N2Zz4=" alt="TARGET">
@@ -59,12 +59,12 @@ The package exposes the following compiled files:
 | File | Description |
 | :--- | :--- |
 | **[VIEWS INCEPTIONS.md](VIEWS%20INCEPTIONS.md)** | The main entry point configured with declarative frontmatter. |
-| **[src/index.jsx](src/index.jsx)** | The dynamic bootstrapper script that loads the application interface. |
-| **[src/App.jsx](src/App.jsx)** | The core UI orchestrator holding overlays, HUD layout, and example buttons. |
+| **[_RESOURCES/DATACORE/_DONE/VIEWS INCEPTIONS/src/index.jsx](_RESOURCES/DATACORE/_DONE/VIEWS%20INCEPTIONS/src/index.jsx)** | The dynamic bootstrapper script that loads the application interface. |
+| **[_RESOURCES/DATACORE/_DONE/VIEWS INCEPTIONS/src/App.jsx](_RESOURCES/DATACORE/_DONE/VIEWS%20INCEPTIONS/src/App.jsx)** | The core UI orchestrator holding overlays, HUD layout, and example buttons. |
 | **[src/components/DynamicComponentLoader.jsx](src/components/DynamicComponentLoader.jsx)** | Handles compilation, sandboxing, error boundary isolation, and DOM mutations. |
-| **[METADATA.md](METADATA.md)** | YAML taxonomy manifest mapping component settings, compatibility, and target. |
-| **[CONTRIBUTING.md](CONTRIBUTING.md)** | Engineering standards and contributor guidelines. |
-| **[LICENSE.md](LICENSE.md)** | The MIT permissible software distribution license. |
+| **[METADATA.md](_RESOURCES/DATACORE/_DONE/VIEWS%20INCEPTIONS/METADATA.md)** | YAML taxonomy manifest mapping component settings, compatibility, and target. |
+| **[CONTRIBUTING.md](_RESOURCES/DATACORE/_DONE/VIEWS%20INCEPTIONS/CONTRIBUTING.md)** | Engineering standards and contributor guidelines. |
+| **[LICENSE.md](_RESOURCES/DATACORE/_DONE/VIEWS%20INCEPTIONS/LICENSE.md)** | The MIT permissible software distribution license. |
 | **[assets/viewsinceptions.clip.gif](assets/viewsinceptions.clip.gif)** | Optimised loop animation demonstrating sandbox capabilities. |
 | **[assets/views_inception_1.webp](assets/views_inception_1.webp)** | Sandbox dashboard screenshot. |
 | **[assets/views_inception_2.webp](assets/views_inception_2.webp)** | Live component load and props inspector screenshot. |
