@@ -769,7 +769,7 @@ function SimpleComponentLoader({ folderPath, dc }) {
                                     overflowY: 'auto',
                                 }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid #00ff00', paddingBottom: '4px' }}>
-                                        <strong>🐛 LIVE DEBUG</strong>
+                                        <strong>LIVE DEBUG</strong>
                                         <button 
                                             onClick={() => setShowDebug(false)}
                                             style={{ background: 'transparent', border: 'none', color: '#ff0000', cursor: 'pointer', fontSize: '14px', padding: '0 4px' }}
@@ -826,9 +826,12 @@ function SimpleComponentLoader({ folderPath, dc }) {
                                         fontFamily: 'monospace',
                                         opacity: '0.5',
                                         transition: 'all 0.2s ease',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
                                     }}
                                 >
-                                    🐛
+                                    <dc.Icon icon="bug" style={{ fontSize: '12px' }} />
                                 </button>
                             )}
                             

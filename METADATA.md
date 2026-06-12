@@ -1,6 +1,6 @@
 ---
 author: beto.group
-contributor: ""
+contributor: []
 version: 2.0.6
 id: views-inceptions-18
 name: VIEWS INCEPTIONS
@@ -15,9 +15,8 @@ repository:
   - https://github.com/beto-group/ViewsInceptions
 missing: []
 resources:
-  - assets/views_inception_1.webp
-  - assets/views_inception_2.webp
-  - assets/viewsinceptions.clip.gif
+  - assets/image/preview_1.webp
+  - assets/videos/preview.gif
 type: DatacoreComponent
 target: Datacore
 security:

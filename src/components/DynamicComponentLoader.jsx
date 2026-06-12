@@ -46,7 +46,7 @@ function ErrorDisplay({ errorMessage }) {
         <div style={errorStyles.wrapper}>
             <details style={errorStyles.details} open>
                 <summary style={errorStyles.summary}>
-                    <span>⚠️</span>
+                    <dc.Icon icon="alert-triangle" style={{ marginRight: '8px' }} />
                     <span style={errorStyles.summaryText}>Component Error</span>
                 </summary>
                 <div style={errorStyles.content}>
@@ -328,7 +328,7 @@ function DynamicComponentLoader(props) {
                     setIsLoading(false);
                 }
             } catch (err) {
-                console.error("[❌ Component Error]", err);
+                console.error("[Component Error]", err);
                 if (!isCancelled) {
                     setLoadError(err.toString());
                     setIsLoading(false);
@@ -353,7 +353,7 @@ function DynamicComponentLoader(props) {
     if (isLoading) {
         return (
             <div style={{ padding: '20px', textAlign: 'center', color: '#888' }}>
-                <div style={{ fontSize: '32px', marginBottom: '12px' }}>⏳</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}><dc.Icon icon="loader-2" style={{ width: '32px', height: '32px' }} /></div>
                 <div>Loading component...</div>
             </div>
         );
@@ -378,7 +378,7 @@ function DynamicComponentLoader(props) {
 
     return (
         <div style={{ padding: '20px', textAlign: 'center', color: '#888' }}>
-            <div style={{ fontSize: '32px', marginBottom: '12px' }}>📦</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}><dc.Icon icon="package" style={{ width: '32px', height: '32px', opacity: 0.6 }} /></div>
             <div>Select a component to load</div>
         </div>
     );
